@@ -44,6 +44,7 @@ class WeChatController extends Controller
 
     public function create($wechat)
     {
+        $wechat = json_decode($wechat,true);
         RWechat::create($wechat);
     }
 
