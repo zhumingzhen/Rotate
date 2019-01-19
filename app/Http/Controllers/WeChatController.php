@@ -44,7 +44,7 @@ class WeChatController extends Controller
 
     public function create($wechat)
     {
-        RWechat::create(wechat);
+        RWechat::create($wechat);
     }
 
 }
