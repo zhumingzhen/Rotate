@@ -25,7 +25,6 @@ class CreateRWechatsTable extends Migration
             $table->string('headimgurl');
             $table->string('subscribe_time');
             $table->string('subscribe_end_time')->useCurrent();
-            $table->string('remark');
             $table->string('subscribe_scene');
             $table->timestamps();
         });
