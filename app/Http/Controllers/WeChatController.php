@@ -45,7 +45,6 @@ class WeChatController extends Controller
     public function create($wechat)
     {
         $wechat['subscribe_end_time'] = $wechat['subscribe_time'];
-        $wechat['remark'] = '';
         RWechat::create($wechat);
     }
 
