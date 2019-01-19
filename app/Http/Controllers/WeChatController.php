@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Log;
 use Illuminate\Http\Request;
+use App\RWechat;
 
 class WeChatController extends Controller
 {
@@ -32,12 +33,18 @@ class WeChatController extends Controller
         }
         $app = app('wechat.official_account');
         $user = $app->user->get($openId);
+        $this->create($user);
         if($user['subscribe']==0){
             return "尚未关注公众号，请关注公众号，再来参加活动！";
         }else{
             
         }
         return $user;
+    }
+
+    public function create($wechat)
+    {
+        RWechat::save(wechat);
     }
 
 }
