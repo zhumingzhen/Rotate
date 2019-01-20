@@ -71,7 +71,7 @@ var speedi = 80;
 var colee2 = document.getElementById("colee2");
 var colee1 = document.getElementById("colee1");
 var colee = document.getElementById("colee");
-colee2.innerHTML = colee1.innerHTML; //克隆colee1为colee2
+// colee2.innerHTML = colee1.innerHTML; //克隆colee1为colee2
 function Marquee1() {
 	//当滚动至colee1与colee2交界时
 	if (colee2.offsetTop - colee.scrollTop <= 0) {
@@ -85,7 +85,7 @@ var MyMar1 = setInterval(Marquee1, speedi) //设置定时器
 var coleer2 = document.getElementById("coleer2");
 var coleer1 = document.getElementById("coleer1");
 var coleer = document.getElementById("coleer");
-coleer2.innerHTML = coleer1.innerHTML; //克隆colee1为colee2
+// coleer2.innerHTML = coleer1.innerHTML; //克隆colee1为colee2
 function Marqueer1() {
 	//当滚动至colee1与colee2交界时
 	if (coleer2.offsetTop - coleer.scrollTop <= 0) {
@@ -108,26 +108,6 @@ jp = {
 	'7': ["6", "0.1元"],
 	'8': ["7", "10元"],
 };
-// $.jsonp({
-// 	type: "POST",
-// 	url: basepath + "/cjqh5/act/bigTurntable/getPrizeWall.action",
-// 	dataType: "json",
-// 	data: {
-// 		'loginName': loginName,
-// 		additionalCode: '0000',
-// 	},
-// 	callbackParameter: "callback",
-// 	success: function(data) {
-// 		// 奖品
-// 		var bianl = data.activitySize;
-// 		// console.log(bianl)
-// 		for (var i = 0; i < bianl; i++) {
-// 			$("<li>" + data.activityPrizeList[i].phone + "</li>").appendTo("#colee1");
-// 			$("<li>" + jp[data.activityPrizeList[i].prizeType][1] + "</li>").appendTo("#coleer1");
-// 		}
-// 		$("#mon").html(data.totalMoney)
-// 	}
-// });
 
 
 
