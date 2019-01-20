@@ -298,12 +298,12 @@ function drawRouletteWheel() {
 </script>
 </head>
 <body style="background:url({{ asset('images/rotate/body_bg2.jpg') }});background-size:cover;">
-<img src="{{ asset('images/rotate/4.png') }}" id="shan-img" style="display:none;" />
-<img src="{{ asset('images/rotate/3.png') }}" id="diy2-img" style="display:none;" />    
-<img src="{{ asset('images/rotate/5.png') }}" id="diy1-img" style="display:none;" />
-<img src="{{ asset('images/rotate/6.png') }}" id="diy3-img" style="display:none;" />
-<img src="{{ asset('images/rotate/7.png') }}" id="diy4-img" style="display:none;" />
-<img src="{{ asset('images/rotate/7.png') }}" id="diy5-img" style="display:none;" />
+<img src="{{ asset('images/rotate2/4.png') }}" id="shan-img" style="display:none;" />
+<img src="{{ asset('images/rotate2/3.png') }}" id="diy2-img" style="display:none;" />    
+<img src="{{ asset('images/rotate2/5.png') }}" id="diy1-img" style="display:none;" />
+<img src="{{ asset('images/rotate2/6.png') }}" id="diy3-img" style="display:none;" />
+<img src="{{ asset('images/rotate2/7.png') }}" id="diy4-img" style="display:none;" />
+<img src="{{ asset('images/rotate2/7.png') }}" id="diy5-img" style="display:none;" />
 <div class="banner" style="margin-top: 35%">
 	<div class="turnplate" style="background-image:url({{ asset('images/rotate/cj_bg.png') }});background-size:100% 100%;">
 		<canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
@@ -311,8 +311,8 @@ function drawRouletteWheel() {
 	</div>
 </div>
 <a href="#" class="more"></a>
-<img src="{{ asset('images/rotate/9.png') }}" class="cloud">
-<img src="{{ asset('images/rotate/10.png') }}" class="cloud2">
-<img src="{{ asset('images/rotate/11.png') }}" class="cloud3">
+<img src="{{ asset('images/rotate2/9.png') }}" class="cloud">
+<img src="{{ asset('images/rotate2/10.png') }}" class="cloud2">
+<img src="{{ asset('images/rotate2/11.png') }}" class="cloud3">
 </body>
 </html>
