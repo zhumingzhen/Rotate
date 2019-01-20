@@ -71,12 +71,10 @@ class WeChatController extends Controller
     public function award(Request $request)
     {
         $data['awards_id'] = $request->input('award');
-        $data['awards_name'] = "";  //$request->input('awardName')
+        $data['awards_name'] = $request->input('awardName');  //
         $data['wechat_id'] = $request->input('id');
-        dd($data);
-        RUserAward::create($data);
-
-        return true;
+        
+        return RUserAward::create($data);;
     }
 
 }
