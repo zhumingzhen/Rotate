@@ -39,7 +39,7 @@ class WeChatController extends Controller
             return "取消关注公众号不可参与抽奖，请关注公众号，再来参加活动！";
         }else{
             $wechat = RWechat::where('openid', $openId)->first();
-            if (!wechat) {
+            if (!$wechat) {
                 $wechat = $this->create($user);
                 $this->createAward($wechat['id']);
             }
