@@ -97,6 +97,32 @@ $(document).ready(function(){
 			duration:8000,
 			callback:function (){	//回调
 				alert(txt);
+				url = '/award'
+				$.ajax({
+					type: "post",
+					url: url,
+			//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
+					data: {"award":item},
+					cache: false,
+					async : false,
+					dataType: "json",
+					success: function (data ,textStatus, jqXHR)
+					{
+						console.log(data);
+						/*
+						if("true"==data.flag){
+						alert("合法！");
+							return true;
+						}else{
+							alert("不合法！错误信息如下："+data.errorMsg);
+							return false;
+						}
+						*/
+					},
+					error:function (XMLHttpRequest, textStatus, errorThrown) {      
+						alert("请求失败！");
+					}
+				});
 				
 			}
 		});

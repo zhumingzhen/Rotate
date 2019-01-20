@@ -68,5 +68,9 @@ class WeChatController extends Controller
         return view('index');
     }
 
+    public function award(Request $request)
+    {
+        return $request->input('award');
+    }
 
 }
