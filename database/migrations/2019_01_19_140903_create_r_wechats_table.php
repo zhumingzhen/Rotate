@@ -26,7 +26,7 @@ class CreateRWechatsTable extends Migration
             $table->string('subscribe_time');
             $table->string('subscribe_end_time')->useCurrent();
             $table->string('subscribe_scene');
-            $table->integer('parent_id')->nullbale();
+            $table->integer('parent_id')->nullbale(true);
             $table->timestamps();
         });
     }
