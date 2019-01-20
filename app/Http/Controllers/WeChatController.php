@@ -66,10 +66,6 @@ class WeChatController extends Controller
         return RDrawnumber::create($award);
     }
 
-    public function index()
-    {
-        return view('index');
-    }
 
     public function award(Request $request)
     {
