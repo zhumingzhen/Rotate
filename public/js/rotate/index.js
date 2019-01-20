@@ -227,9 +227,9 @@ $(function() {
 					//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
 					data: {
 						"award": awards,
-						"awardName": text,
+						"awardName": "'" + text + "'",
 						"id": uid,
-						'_token': csrf_token
+						'_token': "'" + csrf_token + "'"
 					},
 						cache: false,
 						async : false,
