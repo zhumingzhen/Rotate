@@ -224,8 +224,8 @@ $(function() {
 					url: url,
 					//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
 					data: {
-						"award": item,
-						"awardName": txt,
+						"award": awards,
+						"awardName": text,
 						"id": '{{ $uid }}',
 						'_token': '{{ csrf_token() }}'
 					},
