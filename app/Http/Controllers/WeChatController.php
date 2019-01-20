@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Log;
 use Illuminate\Http\Request;
 use App\RWechat;
-use App\RAward;
+use App\RDrawnumber;
 
 class WeChatController extends Controller
 {
@@ -41,7 +41,7 @@ class WeChatController extends Controller
             $wechat = RWechat::where('openid', $openId)->first();
             if (!$wechat) {
                 $wechat = $this->createWechat($user);
-                $this->createAward($wechat['id']);
+                $this->createDrawnumber($wechat['id']);
             }
             
 
@@ -55,14 +55,14 @@ class WeChatController extends Controller
         return RWechat::create($wechat);
     }
 
-    public function createAward($wechat_id)
+    public function createDrawnumber($wechat_id)
     {
         $award = [
             'wechat_id' => $wechat_id,
             'everyday_number' => 2,
             'invite_number' => 1,
         ];
-        return RAward::create($award);
+        return RDrawnumber::create($award);
     }
 
 
