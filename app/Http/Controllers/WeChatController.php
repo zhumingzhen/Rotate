@@ -40,7 +40,7 @@ class WeChatController extends Controller
         }else{
             $wechat = RWechat::where('openid', $openId)->first();
             if (!$wechat) {
-                $wechat = $this->create($user);
+                $wechat = $this->createWechat($user);
                 $this->createAward($wechat['id']);
             }
             
