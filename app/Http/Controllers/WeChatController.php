@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Log;
 use Illuminate\Http\Request;
 use App\RWechat;
+use App\RAward;
 
 class WeChatController extends Controller
 {
@@ -31,21 +32,38 @@ class WeChatController extends Controller
         if(!$openId){
             return "关注公众号，根据提示参加活动！";
         }
+
         $app = app('wechat.official_account');
         $user = $app->user->get($openId);
-        $this->create($user);
         if($user['subscribe']==0){
             return "取消关注公众号不可参与抽奖，请关注公众号，再来参加活动！";
         }else{
+            $wechat = RWechat::where('openid', $openId)->first();
+            if (!wechat) {
+                $wechat = $this->create($user);
+                $this->createAward($wechat['id']);
+            }
             
+
         }
         return $user;
     }
 
-    public function create($wechat)
+    public function createWechat($wechat)
     {
         $wechat['subscribe_end_time'] = $wechat['subscribe_time'];
-        RWechat::create($wechat);
+        return RWechat::create($wechat);
     }
+
+    public function createAward($wechat_id)
+    {
+        $award = [
+            'wechat_id' => $wechat_id,
+            'everyday_number' => 2,
+            'invite_number' => 1,
+        ];
+        return RAward::create($wechat);
+    }
+
 
 }
