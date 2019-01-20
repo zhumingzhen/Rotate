@@ -9,6 +9,8 @@
 
 </head>
 <body>
+    <input name="" id="uid" class="btn btn-primary" type="hidden" value="{{ $uid }}">
+    <input name="" id="csrf_token" class="btn btn-primary" type="hidden" value="{{ csrf_token() }}">
     <div class="zp-box">
         <div class="dp-box">
             <img src="{{ asset('images/rotate/dipan.png') }}" class="g-lottery-img">

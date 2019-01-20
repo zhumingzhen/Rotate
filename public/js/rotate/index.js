@@ -217,6 +217,8 @@ $(function() {
 			callback: function() {
 				isture = false; // 标志为 执行完毕
 				alert(text);
+				uid = $("#uid").val();
+				csrf_token = $("#csrf_token").val();
 
 				url = '/award'
 				$.ajax({
@@ -226,8 +228,8 @@ $(function() {
 					data: {
 						"award": awards,
 						"awardName": text,
-						"id": '{{ $uid }}',
-						'_token': '{{ csrf_token() }}'
+						"id": uid,
+						'_token': csrf_token
 					},
 						cache: false,
 						async : false,
