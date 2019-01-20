@@ -1,11 +1,6 @@
-//var basepath = "https://www.*****.cn/cjq/gua";
 var basepath = "http://192.168.1.100:8085/portal-bos";
-//转盘抽奖  /cjqh5/act/bigTurntable/doPrize.action   loginName
-//中奖用户 /cjqh5/act/bigTurntable/getPrizeWall.action
-//兑奖记录/cjqh5/act/bigTurntable/getPrizeRecord.action   loginName
 // 倒计时
 var interval = 1000;
-
 
 
 //超级返现规则
@@ -41,56 +36,16 @@ $(".cjgz-c").on('click', function() {
 	$(".zz").hide();
 });
 
-//获取参数
-function getQueryString(name) {
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-	var r = window.location.search.substr(1).match(reg);
-	if (r != null) return unescape(r[2]);
-	return null;
-}
-var login = getQueryString("login");
-var loginName = getQueryString("loginName");
-var isapp = getQueryString("isapp");
-var memberId = getQueryString("memberId");
-
-//是否在APP&是否登录 
-if (isapp == 1) {
-	if (login == 1) {
-		$("#tzbtn").attr("href", "cjq:terminal");
-	} else {
-		$("#tzbtn").attr('href', 'cjq:login');
-	}
-} else {
-	$("#share").hide();
-	//$("#tzbtn").attr("href", "https://*****.html");
-}
-
-
-// 中奖用户
-jp = {
-	'1': ["0", "0.1%加息券"],
-	'2': ["1", "0.2%加息券"],
-	'3': ["2", "0.3%加息券"],
-	'4': ["3", "谢谢参与"],
-	'5': ["4", "Iphone8"],
-	'6': ["5", "0.5元"],
-	'7': ["6", "0.1元"],
-	'8': ["7", "10元"],
-};
-
-
 
 //抽奖代码
 $(function() {
 	var $btn = $('.g-lottery-img'); // 旋转的div
-	var cishu = 2; //初始次数，由后台传入
+	var cishu = $("#number").val(); //初始次数，由后台传入
 	$('#cishu').html(cishu); //显示还剩下多少次抽奖机会
 	var isture = 0; //是否正在抽奖
+	var award = $("#award").val();
 	var clickfunc = function() {
-		var data = [1, 2, 3, 4, 5, 6, 7, 8, ]; //抽奖
-		//data为随机出来的结果，根据概率后的结果
-		data = data[Math.floor(Math.random() * data.length)]; //1~8的随机数
-		switch (data) {
+		switch (award) {
 			case 1:
 				rotateFunc(1, 25, '双季丰0.1%加息红包');
 				break;

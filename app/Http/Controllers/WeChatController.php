@@ -46,10 +46,16 @@ class WeChatController extends Controller
                 $this->createDrawnumber($wechat['id']);
             }
             $uid = $wechat['id'];
-
+            
             $totle = RUserAward::get();
             $my = RUserAward::where('wechat_id',$uid)->get();
-            return view('index',compact('uid','totle','my'));
+
+            // 游戏次数
+            $RDrawnumber = RDrawnumber::where('wechat_id', $uid)->first();
+            $number = $RDrawnumber['everyday_number'] + $RDrawnumber['invite_number'];
+            // 获得奖品
+            $award = 2;
+            return view('index',compact('uid','totle','my', 'award', 'number'));
         }
         return $user;
     }
