@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\RWechat;
 use App\RDrawnumber;
+use App\RUserAward;
 
 class WeChatController extends Controller
 {
@@ -69,8 +70,11 @@ class WeChatController extends Controller
 
     public function award(Request $request)
     {
-        return Auth::user();
-        return $request->input('award');
+        $data['awards_id'] = $request->input('award');
+        $data['awards_name'] = $request->input('awardName');
+        $data['wechat_id'] = $request->input('id');
+
+        return RUserAward::create($data);
     }
 
 }
