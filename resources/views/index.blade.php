@@ -297,7 +297,7 @@ function drawRouletteWheel() {
 
 </script>
 </head>
-<body style="background:url({{ asset('images/rotate/body_bg2.jpg') }});background-size:cover;">
+<body style="background:url({{ asset('images/rotate2/body_bg2.jpg') }});background-size:cover;">
 <img src="{{ asset('images/rotate2/4.png') }}" id="shan-img" style="display:none;" />
 <img src="{{ asset('images/rotate2/3.png') }}" id="diy2-img" style="display:none;" />    
 <img src="{{ asset('images/rotate2/5.png') }}" id="diy1-img" style="display:none;" />
@@ -305,9 +305,9 @@ function drawRouletteWheel() {
 <img src="{{ asset('images/rotate2/7.png') }}" id="diy4-img" style="display:none;" />
 <img src="{{ asset('images/rotate2/7.png') }}" id="diy5-img" style="display:none;" />
 <div class="banner" style="margin-top: 35%">
-	<div class="turnplate" style="background-image:url({{ asset('images/rotate/cj_bg.png') }});background-size:100% 100%;">
+	<div class="turnplate" style="background-image:url({{ asset('images/rotate2/cj_bg.png') }});background-size:100% 100%;">
 		<canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
-		<img class="pointer" src="images/jt2.png"/>
+		<img class="pointer" src="{{ asset('images/rotate2/jt2.png') }}"/>
 	</div>
 </div>
 <a href="#" class="more"></a>
