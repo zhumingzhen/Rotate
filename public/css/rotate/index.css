@@ -69,6 +69,9 @@ li>span:nth-child(2){margin-left: 7vw}
 .zhongj-bbk{padding-top:5px;padding-bottom:8px;}
 .zhongj-bb{height:140px;font-weight: 400;}
 .zhongj-bbl{width:100%;}
+.zhongj-bbl div{float: left;}
+#colee1{width: 60%;}
+#colee2{width: 40%}
 .zhongj-bbr{width:45%;height:140px;float:left;}
 
 .wcs-img,.tz-img,.zj-img{position: relative;width: 100%}
