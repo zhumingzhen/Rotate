@@ -31,13 +31,12 @@ class WeChatController extends Controller
         $openId = $request->input('openid');
         if(!$openId){
             return view('subscribe');
-            return "关注公众号，根据提示参加活动！";
         }
 
         $app = app('wechat.official_account');
         $user = $app->user->get($openId);
         if($user['subscribe']==0){
-            return "取消关注公众号不可参与抽奖，请关注公众号，再来参加活动！";
+            return view('subscribe');
         }else{
             $wechat = RWechat::where('openid', $openId)->first();
             if (!$wechat) {

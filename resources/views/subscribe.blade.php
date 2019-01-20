@@ -9,6 +9,7 @@
         
     </head>
     <body>
-        <img src="{{ public_path('image/qrcode.jpg') }}" class="" alt="">
+        <p>关注公众号，根据提示参加活动！</p>
+        <img src="{{ asset('images/qrcode.jpg') }}" class="" alt="" style="width:100%">
     </body>
 </html>
