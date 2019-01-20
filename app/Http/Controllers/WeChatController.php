@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\RWechat;
 use App\RDrawnumber;
 
