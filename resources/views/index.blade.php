@@ -1,349 +1,103 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Canvas自适应宽度大转盘抽奖代码 - 站长素材</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+<title>jQuery手机转盘抽奖代码 - 站长素材</title>
 
-<style type="text/css">
-	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;}
-	body{color:#333; font-size:12px;font-family:"Microsoft YaHei"}
-	ul,ol{list-style-type:none;}
-	select,input,img,select{vertical-align:middle;}
-	input{ font-size:12px;}
-	a{ text-decoration:none; color:#000;}
-	a:hover{color:#c00; text-decoration:none;}
-	.clear{clear:both;}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/rotate/index.css') }}">
 
-	/* 大转盘样式 */
-	.banner{display:block;width:95%;margin-left:auto;margin-right:auto;margin-bottom: 20px;}
-	.banner .turnplate{display:block;width:100%;position:relative;}
-	.banner .turnplate canvas.item{width:100%;}
-	.banner .turnplate img.pointer{position:absolute;width:36%;height:40%;left:32%;top:28%;}
-	.more{display: block;width: 100%;position: fixed;top: 0;left: 0;height: 150px;}
-	.cloud{position: fixed;left: 0;top: 70%;width: 150px;}
-	.cloud2{position: fixed;right: 0;top: 32%;width: 50px;}
-	.cloud3{position: fixed;left: 0;top: 30%;width: 100px;}
-	@media screen and (max-width: 320px) {
-		.cloud{position: fixed;left: 0;top: 70%;width: 150px;}
-		.cloud2{position: fixed;right: 0;top: 30%;width: 50px;}
-		.cloud3{position: fixed;left: 0;top: 23%;width: 100px;}
-	}
-	@media screen and (min-width: 321px) and (max-width: 375px) {
-		.cloud{position: fixed;left: 0;top: 72%;width: 150px;}
-		.cloud2{position: fixed;right: 0;top: 32%;width: 50px;}
-		.cloud3{position: fixed;left: 0;top: 25%;width: 100px;}
-	}
-	@media screen and (min-width: 376px) {
-		.cloud{position: fixed;left: 0;top: 68%;width: 150px;}
-		.cloud2{position: fixed;right: 0;top: 32%;width: 50px;}
-		.cloud3{position: fixed;left: 0;top: 25%;width: 100px;}
-	}
-	@media screen and (max-height: 480px) {
-		.cloud{position: fixed;left: 0;top: 81%;width: 150px;}
-		.cloud2{position: fixed;right: 0;top: 35%;width: 50px;}
-		.cloud3{position: fixed;left: 0;top: 27%;width: 100px;}
-	}
-
-	#mark{width: 100%;height: 100%;background: rgba(0,0,0,0.5);position: fixed;top: 0;left: 0;display: none;}
-	.red-img{position: fixed;top: 10%;left: 5%;width: 90%;}
-</style>
-
-<script type="text/javascript" src="{{ asset('js/rotate2/jquery-1.10.2.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/rotate2/awardRotate.js') }}"></script>
-
-<script type="text/javascript">
-var turnplate={
-		restaraunts:[],				//大转盘奖品名称
-		colors:[],					//大转盘奖品区块对应背景颜色
-		outsideRadius:192,			//大转盘外圆的半径
-		textRadius:155,				//大转盘奖品位置距离圆心的距离
-		insideRadius:68,			//大转盘内圆的半径
-		startAngle:0,				//开始角度
-		
-		bRotate:false				//false:停止;ture:旋转
-};
-
-$(document).ready(function(){
-	//动态添加大转盘的奖品与奖品区域背景颜色
-	turnplate.restaraunts = ["碧根果一袋", "年货红包", "水果拼盘300元月卡", "2元现金红包", "夏威夷果一袋", "3元现金红包", "松子一袋 ", "5元现金红包"];
-	turnplate.colors = ["#FFFFFF","#5fcbd5", "#FFFFFF", "#5fcbd5", "#FFFFFF","#5fcbd5", "#FFFFFF", "#5fcbd5" ];
-
-	
-	var rotateTimeOut = function (){
-		$('#wheelcanvas').rotate({
-			angle:0,
-			animateTo:2160,
-			duration:8000,
-			callback:function (){
-				alert('网络超时，请检查您的网络设置！');
-			}
-		});
-	};
-
-	//旋转转盘 item:奖品位置; txt：提示语;
-	var rotateFn = function (item, txt){
-		var angles = item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length*2));
-		if(angles<270){
-			angles = 270 - angles; 
-		}else{
-			angles = 360 - angles + 270;
-		}
-		$('#wheelcanvas').stopRotate();
-		$('#wheelcanvas').rotate({
-			angle:0,
-			animateTo:angles+1800,
-			duration:8000,
-			callback:function (){	//回调
-				alert(txt);
-				url = '/award'
-				$.ajax({
-					type: "post",
-					url: url,
-			//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
-					data: {
-						"award":item,
-						"awardName":txt,
-						"id":{{ $uid }},
-						'_token':'{{ csrf_token() }}'
-					},
-					cache: false,
-					async : false,
-					dataType: "json",
-					success: function (data ,textStatus, jqXHR)
-					{
-						console.log(data);
-						/*
-						if("true"==data.flag){
-						alert("合法！");
-							return true;
-						}else{
-							alert("不合法！错误信息如下："+data.errorMsg);
-							return false;
-						}
-						*/
-					},
-					error:function (XMLHttpRequest, textStatus, errorThrown) {      
-						alert("请求失败！");
-					}
-				});
-				
-			}
-		});
-	};
-
-	$('.pointer').click(function (){
-		if(turnplate.bRotate)return;
-		turnplate.bRotate = !turnplate.bRotate;
-		//获取随机数(奖品个数范围内)
-		var item = rnd(1,turnplate.restaraunts.length);
-		//奖品数量等于10,指针落在对应奖品区域的中心角度[252, 216, 180, 144, 108, 72, 36, 360, 324, 288]
-		rotateFn(item, turnplate.restaraunts[item-1]);
-		/* switch (item) {
-			case 1:
-				rotateFn(252, turnplate.restaraunts[0]);
-				break;
-			case 2:
-				rotateFn(216, turnplate.restaraunts[1]);
-				break;
-			case 3:
-				rotateFn(180, turnplate.restaraunts[2]);
-				break;
-			case 4:
-				rotateFn(144, turnplate.restaraunts[3]);
-				break;
-			case 5:
-				rotateFn(108, turnplate.restaraunts[4]);
-				break;
-			case 6:
-				rotateFn(72, turnplate.restaraunts[5]);
-				break;
-			case 7:
-				rotateFn(36, turnplate.restaraunts[6]);
-				break;
-			case 8:
-				rotateFn(360, turnplate.restaraunts[7]);
-				break;
-			case 9:
-				rotateFn(324, turnplate.restaraunts[8]);
-				break;
-			case 10:
-				rotateFn(288, turnplate.restaraunts[9]);
-				break;
-		} */
-		console.log(item);
-	});
-});
-
-function rnd(n, m){
-	var random = Math.floor(Math.random()*(m-n+1)+n);
-	return random;
-	
-}
-
-
-//页面所有元素加载完毕后执行drawRouletteWheel()方法对转盘进行渲染
-window.onload=function(){
-	drawRouletteWheel();
-};
-
-function drawRouletteWheel() {    
-  var canvas = document.getElementById("wheelcanvas");    
-  if (canvas.getContext) {
-	  //根据奖品个数计算圆周角度
-	  var arc = Math.PI / (turnplate.restaraunts.length/2);
-	  var ctx = canvas.getContext("2d");
-	  //在给定矩形内清空一个矩形
-	  ctx.clearRect(0,0,422,422);
-	  //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式  
-	  ctx.strokeStyle = "#FFBE04";
-	  //font 属性设置或返回画布上文本内容的当前字体属性
-	  ctx.font = 'bold 18px Microsoft YaHei';      
-	  for(var i = 0; i < turnplate.restaraunts.length; i++) {       
-		  var angle = turnplate.startAngle + i * arc;		 
-		  ctx.fillStyle = turnplate.colors[i];
-		  ctx.beginPath();
-		  //arc(x,y,r,起始角,结束角,绘制方向) 方法创建弧/曲线（用于创建圆或部分圆）    
-		  ctx.arc(211, 211, turnplate.outsideRadius, angle, angle + arc, false);    
-		  ctx.arc(211, 211, turnplate.insideRadius, angle + arc, angle, true);
-		  ctx.stroke();  
-		  ctx.fill();
-		  //锁画布(为了保存之前的画布状态)
-		  ctx.save();
-
-		  //改变画布文字颜色
-		  var b = i+2;
-		  if(b%2){
-		  	 ctx.fillStyle = "#FFFFFF";
-		  	}else{
-		  	 ctx.fillStyle = "#E5302F";
-		  	};
-		  
-		  //----绘制奖品开始----
-		 	
-		  	  	  
-		  var text = turnplate.restaraunts[i];
-		  var line_height = 17;
-		  //translate方法重新映射画布上的 (0,0) 位置
-		  ctx.translate(211 + Math.cos(angle + arc / 2) * turnplate.textRadius, 211 + Math.sin(angle + arc / 2) * turnplate.textRadius);
-		  
-		  //rotate方法旋转当前的绘图
-		  ctx.rotate(angle + arc / 2 + Math.PI / 2);
-		  
-		  /** 下面代码根据奖品类型、奖品名称长度渲染不同效果，如字体、颜色、图片效果。(具体根据实际情况改变) **/
-		  if(text.indexOf("盘")>0){//判断字符进行换行
-			  var texts = text.split("盘");
-			  for(var j = 0; j<texts.length; j++){
-				  ctx.font = j == 0?'bold 20px Microsoft YaHei':'bold 18px Microsoft YaHei';
-				  if(j == 0){
-					  ctx.fillText(texts[j]+"盘", -ctx.measureText(texts[j]+"盘").width / 2, j * line_height);
-				  }else{
-					  ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height*1.2); //调整行间距
-				  }
-			  }
-		  }else if(text.indexOf("盘") == -1 && text.length>8){//奖品名称长度超过一定范围 
-			  text = text.substring(0,8)+"||"+text.substring(8);
-			  var texts = text.split("||");
-			  for(var j = 0; j<texts.length; j++){
-				  ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height);
-			  }
-		  }else{
-		  		
-			  //在画布上绘制填色的文本。文本的默认颜色是黑色
- 
-			  //measureText()方法返回包含一个对象，该对象包含以像素计的指定字体宽度
-			  ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
-		  }
-		  
-		  //添加对应图标
-		  
-		  if(text.indexOf(turnplate.restaraunts[0])>=0){
-			  var img= document.getElementById("diy1-img");
-			  img.onload=function(){  
-				  ctx.drawImage(img,-35,20);      
-			  };  
-			  ctx.drawImage(img,-35,20);  
-		  };
-		  if(text.indexOf(turnplate.restaraunts[1])>=0){
-			  var img= document.getElementById("shan-img");
-			  img.onload=function(){  
-				  ctx.drawImage(img,-35,20);      
-			  }; 
-			  ctx.drawImage(img,-35,20);  
-		  };
-		  if(text.indexOf(turnplate.restaraunts[2])>=0){
-			  var img= document.getElementById("diy5-img");			
-			  img.onload=function(){  
-				  ctx.drawImage(img,-25,35);      
-			  };  
-			  ctx.drawImage(img,-30,35);  
-		  };
-		  if(text.indexOf(turnplate.restaraunts[3])>=0){
-			  var img= document.getElementById("shan-img");
-			  img.onload=function(){  
-				  ctx.drawImage(img,-35,20);      
-			  };  
-			  ctx.drawImage(img,-35,20);  
-		  };
-		  if(text.indexOf(turnplate.restaraunts[4])>=0){
-			  var img= document.getElementById("diy3-img");
-			  img.onload=function(){  
-				  ctx.drawImage(img,-30,20);      
-			  };  
-			  ctx.drawImage(img,-30,20);  
-		  };
-		  if(text.indexOf(turnplate.restaraunts[5])>=0){
-			  var img= document.getElementById("shan-img");
-			  img.onload=function(){  
-				  ctx.drawImage(img,-35,20);      
-			  };  
-			  ctx.drawImage(img,-35,20);  
-		  };
-		  if(text.indexOf(turnplate.restaraunts[6])>=0){
-			  var img= document.getElementById("diy2-img");			  
-			  img.onload=function(){  
-				  ctx.drawImage(img,-30,20);      
-			  };  
-			  ctx.drawImage(img,-30,20);  
-		  };
-		  
-		  if(text.indexOf(turnplate.restaraunts[7])>=0){
-			  var img= document.getElementById("shan-img");
-			  img.onload=function(){  
-				  ctx.drawImage(img,-35,20);      
-			  };  
-			  ctx.drawImage(img,-35,20);  
-		  };
-		  
-		  
-		  //把当前画布返回（调整）到上一个save()状态之前 
-		  ctx.restore();
-		  //----绘制奖品结束----
-	  }     
-  } 
-};
-
-
-
-</script>
 </head>
-<body style="background:url({{ asset('images/rotate2/body_bg2.jpg') }});background-size:cover;">
-<img src="{{ asset('images/rotate2/4.png') }}" id="shan-img" style="display:none;" />
-<img src="{{ asset('images/rotate2/3.png') }}" id="diy2-img" style="display:none;" />    
-<img src="{{ asset('images/rotate2/5.png') }}" id="diy1-img" style="display:none;" />
-<img src="{{ asset('images/rotate2/6.png') }}" id="diy3-img" style="display:none;" />
-<img src="{{ asset('images/rotate2/7.png') }}" id="diy4-img" style="display:none;" />
-<img src="{{ asset('images/rotate2/7.png') }}" id="diy5-img" style="display:none;" />
-<div class="banner" style="margin-top: 35%">
-	<div class="turnplate" style="background-image:url({{ asset('images/rotate2/cj_bg.png') }});background-size:100% 100%;">
-		<canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
-		<img class="pointer" src="{{ asset('images/rotate2/jt2.png') }}"/>
-	</div>
-</div>
-<a href="#" class="more"></a>
-<img src="{{ asset('images/rotate2/9.png') }}" class="cloud">
-<img src="{{ asset('images/rotate2/10.png') }}" class="cloud2">
-<img src="{{ asset('images/rotate2/11.png') }}" class="cloud3">
+<body>
+    <div class="zp-box">
+        <div class="dp-box">
+            <img src="{{ asset('images/rotate/dipan.png') }}" class="g-lottery-img">
+        </div>
+        <div class="zhizhen">
+            <img src="{{ asset('images/rotate/dipan.png') }}img/zhizhen.png">
+            <div id="cishu-text">点击开始<br><span id="cishu">0</span>次</div>
+        </div>
+    </div>
+
+    <div class="jl">
+        <p>
+            <span id="zjjl">中奖纪录》</span>|<span id="look-gz">查看规则》</span>
+        </p>
+    </div>
+    <div class="gdbox">
+        <strong>中奖用户</strong>
+        <p id="tit">
+            <span>手机号</span>
+            <span>获得奖励</span>
+        </p>
+        <div class="zhongj-bbk">
+            <div class="zhongj-bb">
+                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
+                    <div id="colee1"></div>
+                    <div id="colee2"></div>
+                </div>
+                <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
+                    <div id="coleer1" ></div>
+                    <div id="coleer2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--遮罩&弹框-->
+    <div class="zz"></div>
+    <!--超级返现规则-->
+    <div class="cjfx">
+        <img src="{{ asset('images/rotate/close.png') }}" class="cjgz-c">
+        <img src="{{ asset('images/rotate/cjgz.png') }}" id="cjgz-img">
+    </div>
+    <!--转盘规则-->
+    <div class="zpgz">
+        <img src="{{ asset('images/rotate/close.png') }}" class="cjgz-c">
+        <img src="{{ asset('images/rotate/zpgz.png') }}" id="cjgz-img">
+    </div>
+    <!--中奖纪录-->
+    <div class="zj">
+        <img src="{{ asset('images/rotate/close.png') }}" class="cjgz-c">
+        <img src="{{ asset('images/rotate/zjjl-img.png') }}" id="cjgz-img">
+        <div class="zj-content">
+            <p>
+                <span id="mytime">时间</span>
+                <span id="myjl">获得奖励</span>
+            </p>
+            <ul>
+                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
+                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
+                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
+                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
+                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
+                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 无次数提示弹框 -->
+    <div class="wcs">
+        <img src="{{ asset('images/rotate/close.png') }}" class="cjgz-c">
+        <img src="{{ asset('images/rotate/wcs-tk.png') }}" class="wcs-img">
+        <img src="{{ asset('images/rotate/ok-img.png') }}" class="ok-img">
+    </div>
+    <!-- 当日是否投资弹框 -->
+    <div class="today">
+        <img src="{{ asset('images/rotate/close.png') }}" class="cjgz-c">
+        <img src="{{ asset('images/rotate/tz-tk.png') }}" class="tz-img">
+        <img src="{{ asset('images/rotate/ok-img.png') }}" class="ok-img">
+    </div>
+    <!-- 抽到奖励弹框 -->
+    <div class="jl-tk">
+        <img src="{{ asset('images/rotate/close.png') }}" class="cjgz-c">
+        <img src="{{ asset('images/rotate/zj-tk.png') }}" class="zj-img">
+        <img src="{{ asset('images/rotate/ok-img.png') }}" class="ok-img">
+        <p class="texts">恭喜您已获得<br>双季丰满减红包满1000可用50元</p>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.rotate.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jsonp.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
