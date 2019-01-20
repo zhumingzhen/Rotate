@@ -63,12 +63,12 @@ li>span:nth-child(2){margin-left: 7vw}
 #tit{width: 80%;margin: 0 auto;height: 8vw;line-height: 8vw;color: #fff;}
 /*中奖滚动*/
 .zhongj-bbk{width:89.1%;height:auto;margin:0 auto;padding-top:10px;}
-.zhongj-bt,.zhongj-bb{width:90%;height:35px;font-size:16px;font-weight: 700;border-radius: 10px;margin:0 auto;line-height: 35px;text-align: center;}
+.zhongj-bt,.zhongj-bb{width:90%;font-size:16px;font-weight: 700;border-radius: 10px;margin:0 auto;line-height: 35px;text-align: center;}
 .shouj,.phone{width:55%;height:100%;float:left;}
 .jj,.money{width:45%;height:100%;float:left;}
 .zhongj-bbk{padding-top:5px;padding-bottom:8px;}
 .zhongj-bb{height:140px;font-weight: 400;}
-.zhongj-bbl{width:55%;height:140px;float:left;}
+.zhongj-bbl{width:100%;}
 .zhongj-bbr{width:45%;height:140px;float:left;}
 
 .wcs-img,.tz-img,.zj-img{position: relative;width: 100%}
