@@ -60,7 +60,7 @@ class WeChatController extends Controller
         $award = [
             'wechat_id' => $wechat_id,
             'everyday_number' => 2,
-            'invite_number' => 1,
+            'invite_number' => 0,
         ];
         return RDrawnumber::create($award);
     }
