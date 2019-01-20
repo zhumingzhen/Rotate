@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-<title>jQuery手机转盘抽奖代码 - 站长素材</title>
+<title>转盘抽奖</title>
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/rotate/index.css') }}">
 
@@ -23,13 +23,13 @@
 
     <div class="jl">
         <p>
-            <span id="zjjl">中奖纪录》</span>|<span id="look-gz">查看规则》</span>
+            <span id="zjjl">我的奖励》</span>|<span id="look-gz">查看规则》</span>
         </p>
     </div>
     <div class="gdbox">
         <strong>中奖用户</strong>
         <p id="tit">
-            <span>手机号</span>
+            <span>昵称</span>
             <span>获得奖励</span>
         </p>
         <div class="zhongj-bbk">

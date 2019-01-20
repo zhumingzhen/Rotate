@@ -65,39 +65,8 @@ if (isapp == 1) {
 	//$("#tzbtn").attr("href", "https://*****.html");
 }
 
-// 滚动-start
-// 左边
-var speedi = 80;
-var colee2 = document.getElementById("colee2");
-var colee1 = document.getElementById("colee1");
-var colee = document.getElementById("colee");
-// colee2.innerHTML = colee1.innerHTML; //克隆colee1为colee2
-function Marquee1() {
-	//当滚动至colee1与colee2交界时
-	if (colee2.offsetTop - colee.scrollTop <= 0) {
-		colee.scrollTop -= colee1.offsetHeight; //colee跳到最顶端
-	} else {
-		colee.scrollTop++
-	}
-}
-var MyMar1 = setInterval(Marquee1, speedi) //设置定时器
-	// 右边
-var coleer2 = document.getElementById("coleer2");
-var coleer1 = document.getElementById("coleer1");
-var coleer = document.getElementById("coleer");
-// coleer2.innerHTML = coleer1.innerHTML; //克隆colee1为colee2
-function Marqueer1() {
-	//当滚动至colee1与colee2交界时
-	if (coleer2.offsetTop - coleer.scrollTop <= 0) {
-		coleer.scrollTop -= coleer1.offsetHeight; //colee跳到最顶端
-	} else {
-		coleer.scrollTop++
-	}
-}
-var MyMarr1 = setInterval(Marqueer1, speedi) //设置定时器
-	// console.log(num+"  "+arr[num])
-	// 滚动-end
-	// 中奖用户
+
+// 中奖用户
 jp = {
 	'1': ["0", "0.1%加息券"],
 	'2': ["1", "0.2%加息券"],
