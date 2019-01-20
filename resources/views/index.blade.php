@@ -94,10 +94,10 @@
         <img src="{{ asset('images/rotate/ok-img.png') }}" class="ok-img">
         <p class="texts">恭喜您已获得<br>双季丰满减红包满1000可用50元</p>
     </div>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.rotate.js"></script>
-    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
-    <script type="text/javascript" src="js/jquery.jsonp.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="{{ asset('js/rotate/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/rotate/jquery.rotate.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/rotate/jquery.easing.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/rotate/jquery.jsonp.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/rotate/index.js') }}"></script>
 </body>
 </html>
