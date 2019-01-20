@@ -14,7 +14,7 @@
             <img src="{{ asset('images/rotate/dipan.png') }}" class="g-lottery-img">
         </div>
         <div class="zhizhen">
-            <img src="{{ asset('images/rotate/dipan.png') }}img/zhizhen.png">
+            <img src="{{ asset('images/rotate/dipan.png') }}">
             <div id="cishu-text">点击开始<br><span id="cishu">0</span>次</div>
         </div>
     </div>
