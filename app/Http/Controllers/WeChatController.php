@@ -70,6 +70,7 @@ class WeChatController extends Controller
 
     public function award(Request $request)
     {
+        return Auth::user();
         return $request->input('award');
     }
 
