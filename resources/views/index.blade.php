@@ -35,12 +35,12 @@
         <div class="zhongj-bbk">
             <div class="zhongj-bb">
                 <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <span id="colee1">19310334593</span>
-                    <span id="colee2">红包10</span>
+                    <div id="colee1">19310334593</div>
+                    <div id="colee2">红包10</div>
                 </div>
                 <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <span id="colee1">19310334593</span>
-                    <span id="colee2">红包10</span>
+                    <div id="colee1">19310334593</div>
+                    <div id="colee2">红包10</div>
                 </div>
             </div>
         </div>
