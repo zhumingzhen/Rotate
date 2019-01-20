@@ -217,6 +217,39 @@ $(function() {
 			callback: function() {
 				isture = false; // 标志为 执行完毕
 				alert(text);
+
+				url = '/award'
+				$.ajax({
+					type: "post",
+					url: url,
+					//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
+					data: {
+						"award": item,
+						"awardName": txt,
+						"id": '{{ $uid }}',
+						'_token': '{{ csrf_token() }}'
+					},
+						cache: false,
+						async : false,
+						dataType: "json",
+						success: function (data, textStatus, jqXHR) {
+							console.log(data);
+							/*
+							if("true"==data.flag){
+							alert("合法！");
+								return true;
+							}else{
+								alert("不合法！错误信息如下："+data.errorMsg);
+								return false;
+							}
+							*/
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown) {
+							alert("请求失败！");
+						}
+				});
+
+
 				$(".texts").html("恭喜您，已获得<br>" + text);
 					// console.log(text)
 				$(".zz").show();
