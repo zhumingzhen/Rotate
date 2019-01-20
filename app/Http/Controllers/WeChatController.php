@@ -73,7 +73,7 @@ class WeChatController extends Controller
         $data['awards_id'] = $request->input('award');
         $data['awards_name'] = "";  //$request->input('awardName')
         $data['wechat_id'] = $request->input('id');
-
+        dd($data);
         RUserAward::create($data);
 
         return true;
