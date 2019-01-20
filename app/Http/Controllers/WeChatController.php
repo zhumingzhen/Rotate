@@ -30,6 +30,7 @@ class WeChatController extends Controller
     public function a(Request $request){
         $openId = $request->input('openid');
         if(!$openId){
+            return view('subscribe');
             return "关注公众号，根据提示参加活动！";
         }
 
@@ -43,8 +44,6 @@ class WeChatController extends Controller
                 $wechat = $this->createWechat($user);
                 $this->createDrawnumber($wechat['id']);
             }
-            
-
         }
         return $user;
     }
