@@ -231,24 +231,24 @@ $(function() {
 						"id": uid,
 						'_token': "'" + csrf_token + "'"
 					},
-						cache: false,
-						async : false,
-						dataType: "json",
-						success: function (data, textStatus, jqXHR) {
-							console.log(data);
-							/*
-							if("true"==data.flag){
-							alert("合法！");
-								return true;
-							}else{
-								alert("不合法！错误信息如下："+data.errorMsg);
-								return false;
-							}
-							*/
-						},
-						error: function (XMLHttpRequest, textStatus, errorThrown) {
-							alert("请求失败！");
+					cache: false,
+					async : false,
+					dataType: "json",
+					success: function (data, textStatus, jqXHR) {
+						console.log(data);
+						/*
+						if("true"==data.flag){
+						alert("合法！");
+							return true;
+						}else{
+							alert("不合法！错误信息如下："+data.errorMsg);
+							return false;
 						}
+						*/
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown) {
+						alert("请求失败！");
+					}
 				});
 
 
