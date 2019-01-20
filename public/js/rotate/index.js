@@ -76,7 +76,7 @@ jp = {
 //抽奖代码
 $(function() {
 	var $btn = $('.g-lottery-img'); // 旋转的div
-	var cishu = $("#number").val(); //初始次数，由后台传入
+	var cishu = 2; //初始次数，由后台传入
 	$('#cishu').html(cishu); //显示还剩下多少次抽奖机会
 	var isture = 0; //是否正在抽奖
 	var clickfunc = function() {
