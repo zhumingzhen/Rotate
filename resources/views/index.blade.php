@@ -34,38 +34,12 @@
         </p>
         <div class="zhongj-bbk">
             <div class="zhongj-bb">
-                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1">19310334593</div>
-                    <div id="colee2">红包10</div>
-                </div>
-                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1">19310334593</div>
-                    <div id="colee2">红包10</div>
-                </div>
-                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1">19310334593</div>
-                    <div id="colee2">红包10</div>
-                </div>
-                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1">19310334593</div>
-                    <div id="colee2">红包10</div>
-                </div>
-                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1">19310334593</div>
-                    <div id="colee2">红包10</div>
-                </div>
-                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1">19310334593</div>
-                    <div id="colee2">红包10</div>
-                </div>
-                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1">19310334593</div>
-                    <div id="colee2">红包10</div>
-                </div>
-                <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1">19310334593</div>
-                    <div id="colee2">红包10</div>
-                </div>
+                @foreach($totle as $item)
+                    <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
+                        <div id="colee1">{{ $item->wechat_id }}</div>
+                        <div id="colee2">{{ $item->awards_name }}</div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -92,12 +66,9 @@
                 <span id="myjl">获得奖励</span>
             </p>
             <ul>
-                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
-                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
-                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
-                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
-                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
-                <li><span>2017.10.31</span><span>0.3%己烯醛</span></li>
+                @foreach($my as $item)
+                <li><span>{{ $item->created_at }}</span><span>{{ $item->awards_name }}</span></li>
+                @endforeach
             </ul>
         </div>
     </div>

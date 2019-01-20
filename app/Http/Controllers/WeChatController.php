@@ -46,7 +46,10 @@ class WeChatController extends Controller
                 $this->createDrawnumber($wechat['id']);
             }
             $uid = $wechat['id'];
-            return view('index',compact('uid'));
+
+            $totle = RUserAward::get();
+            $my = RUserAward::where('wechat_id',$uid)->get();
+            return view('index',compact('uid','totle','my'));
         }
         return $user;
     }
