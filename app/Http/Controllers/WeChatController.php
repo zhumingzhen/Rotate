@@ -62,7 +62,7 @@ class WeChatController extends Controller
             'everyday_number' => 2,
             'invite_number' => 1,
         ];
-        return RAward::create($wechat);
+        return RAward::create($award);
     }
 
 
