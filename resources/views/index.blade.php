@@ -105,7 +105,7 @@ $(document).ready(function(){
 					data: {
 						"award":item,
 						"id":{{ $uid }},
-						'_token':'{{ csrf_token()' }}
+						'_token':'{{ csrf_token() }}'
 					},
 					cache: false,
 					async : false,
