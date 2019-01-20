@@ -44,6 +44,8 @@ class WeChatController extends Controller
                 $wechat = $this->createWechat($user);
                 $this->createDrawnumber($wechat['id']);
             }
+            $uid = $wechat['id'];
+            return view('index',compact('uid'));
         }
         return $user;
     }

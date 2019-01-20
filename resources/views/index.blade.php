@@ -104,7 +104,8 @@ $(document).ready(function(){
 			//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
 					data: {
 						"award":item,
-						'_token':'{{csrf_token()}}'
+						"id":{{ $uid }},
+						'_token':'{{ csrf_token()' }}
 					},
 					cache: false,
 					async : false,
