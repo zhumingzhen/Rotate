@@ -40,34 +40,6 @@
                     <div id="coleer1" >19310334593</div>
                     <div id="coleer2">红包10</div>
                 </div>
-                <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
-                    <div id="coleer1" >19310334593</div>
-                    <div id="coleer2">红包10</div>
-                </div>
-                <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
-                    <div id="coleer1" >19310334593</div>
-                    <div id="coleer2">红包10</div>
-                </div>
-                <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
-                    <div id="coleer1" >19310334593</div>
-                    <div id="coleer2">红包10</div>
-                </div>
-                <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
-                    <div id="coleer1" >19310334593</div>
-                    <div id="coleer2">红包10</div>
-                </div>
-                <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
-                    <div id="coleer1" >19310334593</div>
-                    <div id="coleer2">红包10</div>
-                </div>
-                <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
-                    <div id="coleer1" >19310334593</div>
-                    <div id="coleer2">红包10</div>
-                </div>
-                <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
-                    <div id="coleer1" >19310334593</div>
-                    <div id="coleer2">红包10</div>
-                </div>
             </div>
         </div>
     </div>

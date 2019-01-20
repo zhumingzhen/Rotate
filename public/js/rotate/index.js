@@ -170,7 +170,7 @@ $(function() {
 	}
 	$(".zhizhen").click(function() {
 		//判断是否投资然后是fou抽奖========================================================
-		var touzi = "没投资";
+		var touzi = "没投资11";
 		if (touzi == "没投资") {
 			$(".zz").show();
 			$(".today").show();
