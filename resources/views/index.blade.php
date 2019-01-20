@@ -14,7 +14,7 @@
             <img src="{{ asset('images/rotate/dipan.png') }}" class="g-lottery-img">
         </div>
         <div class="zhizhen">
-            <img src="{{ asset('images/rotate/dipan.png') }}">
+            <img src="{{ asset('images/rotate/zhizhen.png') }}">
             <div id="cishu-text">点击开始<br><span id="cishu">0</span>次</div>
         </div>
     </div>
@@ -33,12 +33,12 @@
         <div class="zhongj-bbk">
             <div class="zhongj-bb">
                 <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                    <div id="colee1"></div>
-                    <div id="colee2"></div>
+                    <div id="colee1">19310334593</div>
+                    <div id="colee2">红包10</div>
                 </div>
                 <div class="zhongj-bbr" id="coleer" style="overflow:hidden;">
-                    <div id="coleer1" ></div>
-                    <div id="coleer2"></div>
+                    <div id="coleer1" >19310334593</div>
+                    <div id="coleer2">红包10</div>
                 </div>
             </div>
         </div>
