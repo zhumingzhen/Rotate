@@ -12,7 +12,6 @@
     <input name="" id="uid" class="btn btn-primary" type="hidden" value="{{ $uid }}">
     <input name="" id="csrf_token" class="btn btn-primary" type="hidden" value="{{ csrf_token() }}">
     <input name="" id="number" class="btn btn-primary" type="hidden" value="{{ $number }}">
-    <input name="" id="award" class="btn btn-primary" type="hidden" value="{{ $award }}">
     <div class="zp-box">
         <div class="dp-box">
             <img src="{{ asset('images/rotate/dipan.png') }}" class="g-lottery-img">
@@ -38,7 +37,7 @@
             <div class="zhongj-bb">
                 @foreach($totle as $item)
                     <div class="zhongj-bbl" id="colee" style="overflow:hidden;">
-                        <div id="colee1">{{ $item->wechat_id }}</div>
+                        <div id="colee1">{{ $item->wechat_nickname }}</div>
                         <div id="colee2">{{ $item->awards_name }}</div>
                     </div>
                 @endforeach
@@ -69,7 +68,11 @@
             </p>
             <ul>
                 @foreach($my as $item)
-                <li><span>{{ $item->created_at }}</span><span>{{ $item->awards_name }}</span></li>
+                {{--  $item->created_at->format('Y.m.d')  --}}
+                <li>
+                    <span>{{ $item->created_at->toDateString() }}</span>
+                    <span>{{ $item->awards_name }}</span>
+                </li>
                 @endforeach
             </ul>
         </div>

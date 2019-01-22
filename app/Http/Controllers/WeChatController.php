@@ -22,24 +22,38 @@ class WeChatController extends Controller
 
         $app = app('wechat.official_account');
         $app->server->push(function($message){
-            return "<a href='http://zp.ryhtgt.ltd/'>大转盘</a>";
-            return "<a href='http://zpl.qianligu100.com/a?openid=".$message['FromUserName']."'>大转盘</a>";
+            if ($message['MsgType'] == text) {
+                if (is_numeric($message['Content'])) {
+                    "<a href='http://zpl.qianligu100.com/wechatUsers?openid=" . $message['FromUserName'] . "&invite=". $message['Content'] ."'>大转盘抽奖</a>";
+                }
+                if ($message['Content'] == '抽奖') {
+                    return "<a href='http://zpl.qianligu100.com/wechatUsers?openid=" . $message['FromUserName'] . "'>大转盘抽奖</a>";
+                }
+            }
+            // return "<a href='http://zp.ryhtgt.ltd/'>大转盘</a>";
+            
             return "欢迎".$message['FromUserName'].",关注 馒头生活！";
         });
         return $app->server->serve();
     }
 
-    public function a(Request $request){
+    // 查询信息跳到首页
+    public function wechatUsers(Request $request){
+        // 获取openid
         $openId = $request->input('openid');
         if(!$openId){
             return view('subscribe');
         }
-
+        // 获取app操作实例
         $app = app('wechat.official_account');
-        $user = $app->user->get($openId);
+        // 获取用户信息
+        // $user = $app->user->get($openId);
+        // 判断时候关注
+        $user = ['subscribe'=>1];
         if($user['subscribe']==0){
             return view('subscribe');
         }else{
+            // 查询是否有该用户
             $wechat = RWechat::where('openid', $openId)->first();
             if (!$wechat) {
                 $wechat = $this->createWechat($user);
@@ -47,25 +61,25 @@ class WeChatController extends Controller
             }
             $uid = $wechat['id'];
             
-            $totle = RUserAward::get();
-            $my = RUserAward::where('wechat_id',$uid)->get();
-
+            // 查询中奖用户
+            $totle = RUserAward::orderBy('created_at', 'DESC')->get();
+            $my = RUserAward::where('wechat_id',$uid)->orderBy('created_at', 'DESC')->get();
             // 游戏次数
-            $RDrawnumber = RDrawnumber::where('wechat_id', $uid)->first();
-            $number = $RDrawnumber['everyday_number'] + $RDrawnumber['invite_number'];
-            // 获得奖品
-            $award = 2;
-            return view('index',compact('uid','totle','my', 'award', 'number'));
+            $number = $this->getGameNumber($uid);
+            
+            return view('index',compact('uid','totle','my', 'number'));
         }
-        return $user;
     }
 
+
+    // 创建微信用户
     public function createWechat($wechat)
     {
         $wechat['subscribe_end_time'] = $wechat['subscribe_time'];
         return RWechat::create($wechat);
     }
 
+    // 创建游戏次数表记录
     public function createDrawnumber($wechat_id)
     {
         $award = [
@@ -76,14 +90,14 @@ class WeChatController extends Controller
         return RDrawnumber::create($award);
     }
 
-
-    public function award(Request $request)
+    // 获取游戏次数
+    public function getGameNumber($uid)
     {
-        $data['awards_id'] = $request->input('award');
-        $data['awards_name'] = $request->input('awardName');  //
-        $data['wechat_id'] = $request->input('id');
-        
-        return RUserAward::create($data);;
+        $RDrawnumber = RDrawnumber::where('wechat_id', $uid)->first();
+        $number = $RDrawnumber['everyday_number'] + $RDrawnumber['invite_number'];
+        return $number;
     }
+
+    
 
 }

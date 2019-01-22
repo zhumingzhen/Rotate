@@ -16,6 +16,7 @@ class CreateRUserAwardsTable extends Migration
         Schema::create('r_user_awards', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('wechat_id');
+            $table->string('wechat_nickname');
             $table->integer('awards_id');
             $table->string('awards_name');
             $table->timestamps();

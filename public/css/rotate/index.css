@@ -70,8 +70,8 @@ li>span:nth-child(2){margin-left: 7vw}
 .zhongj-bb{min-height:140px;font-weight: 400;text-align: left;}
 .zhongj-bbl{width:100%;}
 .zhongj-bbl div{float: left;}
-#colee1{width: 60%;}
-#colee2{width: 40%}
+#colee1{width: 60%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+#colee2{width: 40%;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
 .zhongj-bbr{width:45%;height:140px;float:left;}
 
 .wcs-img,.tz-img,.zj-img{position: relative;width: 100%}

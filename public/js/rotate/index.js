@@ -36,54 +36,20 @@ $(".cjgz-c").on('click', function() {
 	$(".zz").hide();
 });
 
-//获取参数
-function getQueryString(name) {
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-	var r = window.location.search.substr(1).match(reg);
-	if (r != null) return unescape(r[2]);
-	return null;
-}
-var login = getQueryString("login");
-var isapp = getQueryString("isapp");
-var memberId = getQueryString("memberId");
 
-//是否在APP&是否登录 
-if (isapp == 1) {
-	if (login == 1) {
-		$("#tzbtn").attr("href", "cjq:terminal");
-	} else {
-		$("#tzbtn").attr('href', 'cjq:login');
-	}
-} else {
-	$("#share").hide();
-	//$("#tzbtn").attr("href", "https://*****.html");
-}
-
-
-// 中奖用户
-jp = {
-	'1': ["0", "0.1%加息券"],
-	'2': ["1", "0.2%加息券"],
-	'3': ["2", "0.3%加息券"],
-	'4': ["3", "谢谢参与"],
-	'5': ["4", "Iphone8"],
-	'6': ["5", "0.5元"],
-	'7': ["6", "0.1元"],
-	'8': ["7", "10元"],
-};
 
 
 //抽奖代码
 $(function() {
 	var $btn = $('.g-lottery-img'); // 旋转的div
-	var cishu = 2; //初始次数，由后台传入
+	var cishu = $("#number").val(); //初始次数，由后台传入
 	$('#cishu').html(cishu); //显示还剩下多少次抽奖机会
 	var isture = 0; //是否正在抽奖
-	var clickfunc = function() {
-		var data = [1, 2, 3, 4, 5, 6, 7, 8, ]; //抽奖
+
+
+	var clickfunc = function (award) {
 		//data为随机出来的结果，根据概率后的结果
-		data = data[Math.floor(Math.random() * data.length)]; //1~8的随机数
-		switch (data) {
+		switch (award) {
 			case 1:
 				rotateFunc(1, 25, '双季丰0.1%加息红包');
 				break;
@@ -145,20 +111,7 @@ $(function() {
 					cishu = 0;
 				}
 				$('#cishu').html(cishu);
-				clickfunc();
-			}
-		}
-	});
-	var rotateFunc = function(awards, angle, text) {
-		isture = true;
-		$btn.stopRotate();
-		$btn.rotate({
-			angle: 0, //旋转的角度数
-			duration: 4000, //旋转时间
-			animateTo: angle + 1440, //给定的角度,让它根据得出来的结果加上1440度旋转
-			callback: function() {
-				isture = false; // 标志为 执行完毕
-				alert(text);
+
 				uid = $("#uid").val();
 				csrf_token = $("#csrf_token").val();
 
@@ -168,16 +121,17 @@ $(function() {
 					url: url,
 					//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
 					data: {
-						"award": awards,
-						"awardName": text,
+						// "award": awards,
+						// "awardName": text,
 						"id": uid,
 						"_token": csrf_token
 					},
 					cache: false,
-					async : false,
+					async: false,
 					dataType: "json",
 					success: function (data, textStatus, jqXHR) {
 						console.log(data);
+						award = data.award;
 						/*
 						if("true"==data.flag){
 						alert("合法！");
@@ -193,6 +147,21 @@ $(function() {
 					}
 				});
 
+				console.log(award);
+				clickfunc(award);
+			}
+		}
+	});
+	var rotateFunc = function(awards, angle, text) {
+		isture = true;
+		$btn.stopRotate();
+		$btn.rotate({
+			angle: 0, //旋转的角度数
+			duration: 4000, //旋转时间
+			animateTo: angle + 1440, //给定的角度,让它根据得出来的结果加上1440度旋转
+			callback: function() {
+				isture = false; // 标志为 执行完毕
+				alert(text);
 
 				$(".texts").html("恭喜您，已获得<br>" + text);
 					// console.log(text)
