@@ -22,9 +22,9 @@ class WeChatController extends Controller
 
         $app = app('wechat.official_account');
         $app->server->push(function($message){
-            if ($message['MsgType'] == text) {
+            if ($message['MsgType'] == 'text') {
                 if (is_numeric($message['Content'])) {
-                    "<a href='http://zpl.qianligu100.com/wechatUsers?openid=" . $message['FromUserName'] . "&invite=". $message['Content'] ."'>大转盘抽奖</a>";
+                    return "<a href='http://zpl.qianligu100.com/wechatUsers?openid=" . $message['FromUserName'] . "&invite=". $message['Content'] ."'>大转盘抽奖</a>";
                 }
                 if ($message['Content'] == '抽奖') {
                     return "<a href='http://zpl.qianligu100.com/wechatUsers?openid=" . $message['FromUserName'] . "'>大转盘抽奖</a>";
