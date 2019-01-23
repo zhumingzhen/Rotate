@@ -65,7 +65,7 @@ class WeChatController extends Controller
     public function callback(Request $request)
     {
         // 未登录
-        if (empty($_SESSION['wechat_user'])) {
+        if (empty(session['wechat_user'])) {
             echo 1;
             $user = $this->app->oauth->user();
                 // 获取用户详细信息
