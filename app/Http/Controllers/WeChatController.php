@@ -60,7 +60,6 @@ class WeChatController extends Controller
     public function callback(Request $request)
     {
         $user = $this->app->oauth->user();
-        dd($user);
         $user = $this->app->user->get($user['id']);
         $wechat = $this->createWechat($userInfo);
 
