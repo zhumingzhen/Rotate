@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\RWechat;
 use App\RDrawnumber;
 use App\RUserAward;
+use session;
 
 class WeChatController extends Controller
 {
@@ -65,7 +66,7 @@ class WeChatController extends Controller
     public function callback(Request $request)
     {
         // 未登录
-        if (empty(session['wechat_user'])) {
+        if (empty(session('wechat_user'))) {
             echo 1;
             $user = $this->app->oauth->user();
                 // 获取用户详细信息
@@ -73,9 +74,8 @@ class WeChatController extends Controller
 
             session(['wechat_user' => $user]);
 
-
         }else{
-            $user = session('wechat_user');;
+            $user = session('wechat_user');
             
         }
         dd($user);
