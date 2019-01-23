@@ -61,7 +61,7 @@ class WeChatController extends Controller
     {
         $user = $this->app->oauth->user();
         $user = $this->app->user->get($user['id']);
-        $wechat = $this->createWechat($userInfo);
+        $wechat = $this->createWechat($user);
 
         if ($user['subscribe'] == 0) {
             return view('subscribe');
