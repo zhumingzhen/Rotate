@@ -45,9 +45,7 @@ class WeChatController extends Controller
 
     /**
      * 
-     * 服务号用
-     * 
-     * 查询信息跳到首页
+     * 服务号授权
      * 
      */
     public function wechatFWUsers(Request $request)
@@ -57,11 +55,17 @@ class WeChatController extends Controller
         return $response;
     }
 
+    /**
+     * 
+     * 服务号信息保存
+     * 
+     * 查询信息跳到首页
+     * 
+     */
     public function callback(Request $request)
     {
         $user = $this->app->oauth->user();
         $user = $this->app->user->get($user['id']);
-        $wechat = $this->createWechat($user);
 
         $openId = $user['openid'];
 
