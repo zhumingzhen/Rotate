@@ -52,7 +52,7 @@ class WeChatController extends Controller
      */
     public function wechatFWUsers(Request $request)
     {
-        $oauth  = $this->app->oauth->scopes(['snsapi_userinfo']);
+        $oauth  = $this->app->oauth->scopes(['snsapi_userinfo'])->redirect();
         // 获取 OAuth 授权结果用户信息
         $user = $oauth->user();
         dd($user);
