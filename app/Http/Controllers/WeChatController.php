@@ -82,7 +82,7 @@ class WeChatController extends Controller
                 $wechat = $this->createWechat($user);
                 $this->createDrawnumber($wechat['id']);
             }
-            $uid = $wechat('id');
+            $uid = $wechat['id'];
             // 查询中奖用户
             $totle = RUserAward::orderBy('created_at', 'DESC')->get();
             // 查询我的中奖信息
