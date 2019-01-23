@@ -19,10 +19,10 @@ Route::any('/wechat', 'WeChatController@serve');
 
 Route::any('/award', 'AwardController@award');
 
-Route::any('/wechatUsers', 'WeChatController@wechatUsers');
+Route::any('/wechatUser', 'WeChatController@wechatUser');
 
-Route::any('/wechatFWUsers', 'WeChatController@wechatFWUsers');
+Route::any('/FwechatUser', 'WeChatController@FwechatUser');
 
-Route::any('/callback', 'WeChatController@callback');
+Route::any('/Fcallback', 'WeChatController@Fcallback');
 
 Route::any('/b','WeChatController@b');

@@ -49,10 +49,10 @@ class WeChatController extends Controller
      * 服务号授权
      * 
      */
-    public function wechatFWUsers(Request $request)
+    public function FwechatUser(Request $request)
     {
         $response = $this->app->oauth->scopes(['snsapi_base'])
-            ->redirect('http://'.$_SERVER['HTTP_HOST'].'/callback');
+            ->redirect('http://'.$_SERVER['HTTP_HOST']. '/Fcallback');
         return $response;
     }
 
@@ -63,7 +63,7 @@ class WeChatController extends Controller
      * 查询信息跳到首页
      * 
      */
-    public function callback(Request $request)
+    public function Fcallback(Request $request)
     {
         // 未登录
         if (empty(session('wechat_user'))) {
