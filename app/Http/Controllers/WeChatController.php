@@ -64,8 +64,14 @@ class WeChatController extends Controller
      */
     public function callback(Request $request)
     {
-        $user = $this->app->oauth->user();
-        $user = $this->app->user->get($user['id']);
+        // 未登录
+        if (empty($_SESSION['wechat_user'])) {
+            $user = $this->app->oauth->user();
+                // 获取用户详细信息
+            $user = $this->app->user->get($user['id']);
+        }else{
+            $user = $_SESSION['wechat_user'];
+        }
 
         $openId = $user['openid'];
 
@@ -96,6 +102,7 @@ class WeChatController extends Controller
 
             return view('index', compact('uid', 'totle', 'my', 'number'));
         }
+        
     }
 
     /**
