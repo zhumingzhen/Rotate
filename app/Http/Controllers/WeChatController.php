@@ -66,15 +66,19 @@ class WeChatController extends Controller
     {
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
+            echo 1;
             $user = $this->app->oauth->user();
                 // 获取用户详细信息
             $user = $this->app->user->get($user['id']);
 
             $_SESSION['wechat_user'] = $user;
-        }else{
-            $user = $_SESSION['wechat_user'];
-        }
 
+        }else{
+            echo 2;
+            $user = $_SESSION['wechat_user'];
+            
+        }
+        dd($user);
         $openId = $user['openid'];
 
         if ($user['subscribe'] == 0) {
