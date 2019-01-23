@@ -47,9 +47,9 @@ class WeChatController extends Controller
         // 获取app操作实例
         $app = app('wechat.official_account');
         // 获取用户信息
-        // $user = $app->user->get($openId);
+        $user = $app->user->get($openId);
         // 判断时候关注
-        $user = ['subscribe'=>1];
+        // $user = ['subscribe'=>1];
         if($user['subscribe']==0){
             return view('subscribe');
         }else{
