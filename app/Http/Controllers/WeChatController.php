@@ -69,6 +69,8 @@ class WeChatController extends Controller
             $user = $this->app->oauth->user();
                 // 获取用户详细信息
             $user = $this->app->user->get($user['id']);
+
+            session(['wechat_user' => $user]);
         }else{
             $user = $_SESSION['wechat_user'];
         }
