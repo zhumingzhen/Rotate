@@ -78,7 +78,6 @@ class WeChatController extends Controller
             $user = session('wechat_user');
             
         }
-        dd($user);
         $openId = $user['openid'];
 
         if ($user['subscribe'] == 0) {
