@@ -56,6 +56,11 @@ class WeChatController extends Controller
             // 查询是否有该用户
             $wechat = RWechat::where('openid', $openId)->first();
             if (!$wechat) {
+                $invite = $request->input('invite');
+                if ($invite) {
+                    $wechat['parent_id'] = $invite;
+                    RDrawnumber::where('wechat_id', $invite)->decrement('invite_number');
+                }
                 $wechat = $this->createWechat($user);
                 $this->createDrawnumber($wechat['id']);
             }
