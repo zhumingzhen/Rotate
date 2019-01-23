@@ -58,7 +58,7 @@ class WeChatController extends Controller
             if (!$wechat) {
                 $invite = $request->input('invite');
                 if ($invite) {
-                    $wechat['parent_id'] = $invite;
+                    $user['parent_id'] = $invite;
                     RDrawnumber::where('wechat_id', $invite)->decrement('invite_number');
                 }
                 $wechat = $this->createWechat($user);

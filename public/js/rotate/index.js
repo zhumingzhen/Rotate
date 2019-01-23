@@ -170,11 +170,14 @@ $(function() {
 				$(".cjgz-c").on('click', function() {
 					$(".zz").hide();
 					$(".jl-tk").hide();
+					location.reload()
 				});
 				$(".ok-img").on('click', function() {
 					$(".zz").hide();
 					$(".jl-tk").hide();
+					location.reload()
 				});
+
 			}
 		});
 	};
