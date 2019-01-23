@@ -64,7 +64,6 @@ class WeChatController extends Controller
      */
     public function callback(Request $request)
     {
-        dd($_SESSION['wechat_user']);
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
             echo 1;
@@ -72,12 +71,11 @@ class WeChatController extends Controller
                 // 获取用户详细信息
             $user = $this->app->user->get($user['id']);
 
-            $_SESSION['wechat_user'] = $user;
+            session(['wechat_user' => $user]);
 
 
         }else{
-            echo 2;
-            $user = $_SESSION['wechat_user'];
+            $user = session('wechat_user');;
             
         }
         dd($user);
