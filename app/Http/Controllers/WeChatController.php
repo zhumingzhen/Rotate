@@ -52,7 +52,7 @@ class WeChatController extends Controller
     public function wechatFWUsers(Request $request)
     {
         $response = $this->app->oauth->scopes(['snsapi_base'])
-            ->redirect('http://zpl.qianligu100.com/callback');
+            ->redirect($_SERVER['HTTP_HOST'].'/callback');
         return $response;
     }
 
@@ -70,9 +70,7 @@ class WeChatController extends Controller
             $user = $this->app->oauth->user();
                 // 获取用户详细信息
             $user = $this->app->user->get($user['id']);
-
             session(['wechat_user' => $user]);
-
         }else{
             $user = session('wechat_user');
             
