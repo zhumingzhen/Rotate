@@ -23,4 +23,6 @@ Route::any('/wechatUsers', 'WeChatController@wechatUsers');
 
 Route::any('/wechatFWUsers', 'WeChatController@wechatFWUsers');
 
+Route::any('/callback', 'WeChatController@callback');
+
 Route::any('/b','WeChatController@b');
