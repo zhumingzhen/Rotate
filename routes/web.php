@@ -21,4 +21,6 @@ Route::any('/award', 'AwardController@award');
 
 Route::any('/wechatUsers', 'WeChatController@wechatUsers');
 
+Route::any('/wechatFWUsers', 'WeChatController@wechatFWUsers');
+
 Route::any('/b','WeChatController@b');
