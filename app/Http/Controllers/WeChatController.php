@@ -60,8 +60,36 @@ class WeChatController extends Controller
     public function callback(Request $request)
     {
         $user = $this->app->oauth->user();
-        $user = $this->app->user->get($user['id']);
         dd($user);
+        $user = $this->app->user->get($user['id']);
+        $wechat = $this->createWechat($userInfo);
+
+        if ($user['subscribe'] == 0) {
+            return view('subscribe');
+        } else {
+            // 根据openid查询是否有该用户
+            $wechat = RWechat::where('openid', $openId)->first();
+            if (!$wechat) {
+                // 是否有邀请码
+                $invite = $request->input('invite');
+                if ($invite) {
+                    $user['parent_id'] = $invite;
+                    // 邀请用户增加抽奖次数
+                    RDrawnumber::where('wechat_id', $invite)->increment('invite_number');
+                }
+                // 创建用户
+                $wechat = $this->createWechat($user);
+                $this->createDrawnumber($wechat['id']);
+            }
+            // 查询中奖用户
+            $totle = RUserAward::orderBy('created_at', 'DESC')->get();
+            // 查询我的中奖信息
+            $my = RUserAward::where('wechat_id', $wechat['id'])->orderBy('created_at', 'DESC')->get();
+            // 游戏次数
+            $number = $this->getGameNumber($wechat['id']);
+
+            return view('index', compact('uid', 'totle', 'my', 'number'));
+        }
     }
 
     /**
